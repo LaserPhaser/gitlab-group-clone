@@ -43,4 +43,22 @@ Example
     $  gitlab-clone --group=123 --token=MySecretToken --gitlab-url=gitlab.organization.com
 
 
+
+    For example if you clone this group https://gitlab.com/researchable which id is 2928513
+
+
+    you will have absolutely the same structure locally:
+    > tree
+    .
+    └── researchable
+        ├── general
+        │   ├── gitlab
+        │   ├── management
+        │   └── templates
+        └── sport-data-valley
+            ├── mvp
+            └── sdv
+
+
+
 .. _`pip`: https://pypi.python.org/pypi/pip/
