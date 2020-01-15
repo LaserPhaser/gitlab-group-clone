@@ -41,11 +41,13 @@ Usage
 Example
 -------
 
-    >>> $  gitlab-clone --group=123 --token=MySecretToken --gitlab-url=gitlab.organization.com
+    $  gitlab-clone --group=123 --token=MySecretToken --gitlab-url=gitlab.organization.com
 
     For example if you clone this group https://gitlab.com/lmaolmaolmao which id is 6849299
 
     you will have absolutely the same structure locally:
+
+    .. image:: https://github.com/ArseniyAntonov/gitlab-group-clone/raw/master/img/tree.png
 
 >>> tree
    .
