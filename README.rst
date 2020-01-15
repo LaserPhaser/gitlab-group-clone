@@ -40,24 +40,19 @@ Usage
 
 Example
 -------
-    $  gitlab-clone --group=123 --token=MySecretToken --gitlab-url=gitlab.organization.com
 
+    >>> $  gitlab-clone --group=123 --token=MySecretToken --gitlab-url=gitlab.organization.com
 
-
-    For example if you clone this group https://gitlab.com/researchable which id is 2928513
-
+    For example if you clone this group https://gitlab.com/lmaolmaolmao which id is 6849299
 
     you will have absolutely the same structure locally:
-    > tree
-    .
-    └── researchable
-        ├── general
-        │   ├── gitlab
-        │   ├── management
-        │   └── templates
-        └── sport-data-valley
-            ├── mvp
-            └── sdv
+
+>>> tree
+   .
+    └── lmaolmaolmao
+        └── subgroup1
+            └── subgroup2
+                └── subgroup3
 
 
 
