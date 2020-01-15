@@ -40,16 +40,16 @@ Usage
 
 Example
 -------
-    $  gitlab-clone --group=123 --token=MySecretToken --gitlab-url=gitlab.organization.com
 
-
+    $ gitlab-clone --group=123 --token=MySecretToken --gitlab-url=gitlab.organization.com
 
     For example if you clone this group https://gitlab.com/researchable which id is 2928513
-
-
     you will have absolutely the same structure locally:
-    > tree
-    .
+    
+    .. image:: https://github.com/ArseniyAntonov/gitlab-group-clone/raw/master/img/tree.png
+    
+
+>>> tree    
     └── researchable
         ├── general
         │   ├── gitlab
