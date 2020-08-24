@@ -27,7 +27,7 @@ def clone(group_id, branch, token, gitlab_url):
     while page < total_pages:
         page += 1
         response = requests.get(
-            f"https://{gitlab_url}/api/v4/groups/{group_id}/projects?private_token={token}&include_subgroups=True&per_page=100&page={page}&with_shared=False")
+            f"{gitlab_url}/api/v4/groups/{group_id}/projects?private_token={token}&include_subgroups=True&per_page=100&page={page}&with_shared=False", verify=False)
         for project in response.json():
             path = project['path_with_namespace']
             ssh_url_to_repo = project['ssh_url_to_repo']
