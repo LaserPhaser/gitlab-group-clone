@@ -1,6 +1,8 @@
 import requests
 import subprocess, shlex
 import argparse
+import os
+import logging
 
 
 def main():
@@ -15,6 +17,7 @@ def main():
 
     parser.add_argument('--gitlab-url', metavar='gitlab', type=str,
                         help='Gitlab address [by default gitlab.com]', default='gitlab.com')
+
     args = parser.parse_args()
     request_param = args.__dict__
 
@@ -31,14 +34,17 @@ def clone(group_id, branch, token, gitlab_url):
         for project in response.json():
             path = project['path_with_namespace']
             ssh_url_to_repo = project['ssh_url_to_repo']
-
             try:
-
-                command = shlex.split(f"git clone --branch {branch} {ssh_url_to_repo} {path}")
-                result_code = subprocess.Popen(command)
+                if not os.path.exists(path):
+                    command = shlex.split(f"git clone --branch {branch} {ssh_url_to_repo} {path}")
+                    result_code = subprocess.Popen(command)
+                else:
+                    logging.info(f"{path} already exists")
+                    command = shlex.split(f"cd {path}; git pull  {path}; cd -")
+                    result_code = subprocess.Popen(command)
 
             except Exception as e:
-                print(f"Error on {ssh_url_to_repo}: {e}")
+                logging.error(f"Error on {ssh_url_to_repo}: {e}")
 
         total_pages = int(response.headers['X-Total-Pages'])
 

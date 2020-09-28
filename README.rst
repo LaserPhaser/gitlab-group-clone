@@ -56,6 +56,7 @@ Example
             └── subgroup2
                 └── subgroup3
 
+    If you will use this command again `gitlab-clone` will just pull the updated to the existing repos, and will download new repos from the group.
 
 
 .. _`pip`: https://pypi.python.org/pypi/pip/
