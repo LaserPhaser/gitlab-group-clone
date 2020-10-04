@@ -9,14 +9,23 @@ def main():
     parser = argparse.ArgumentParser(description='Required args for recursive clone')
     parser.add_argument('--group_id', metavar='group_id', type=int,
                         help='Id of a group in gitlab', required=True)
-    parser.add_argument('--token', metavar='token', type=str,
-                        help='Gitlab Token', required=True)
 
     parser.add_argument('--branch', metavar='branch', type=str,
                         help='Branch to clone in all repos [by default master]', default='master')
 
-    parser.add_argument('--gitlab-url', metavar='gitlab', type=str,
-                        help='Gitlab address [by default gitlab.com]', default='gitlab.com')
+    parser.add_argument(
+        '--gitlab-url',
+        metavar='gitlab',
+        type=str,
+        default=os.environ.get('GITLAB_URL', "gitlab.com"),
+        help='Gitlab address [by default gitlab.com]')
+
+    parser.add_argument(
+        '--token',
+        metavar='token',
+        type=str,
+        default=os.environ.get('GITLAB_TOKEN'),
+        help='Gitlab Token')
 
     args = parser.parse_args()
     request_param = args.__dict__
