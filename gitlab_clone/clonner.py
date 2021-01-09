@@ -3,7 +3,9 @@ import subprocess, shlex
 import argparse
 import os
 import logging
+import urllib3
 
+urllib3.disable_warnings()
 
 def main():
     parser = argparse.ArgumentParser(description='Required args for recursive clone')
