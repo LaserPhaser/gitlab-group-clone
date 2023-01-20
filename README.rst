@@ -33,9 +33,10 @@ Usage
   optional arguments:
   -h, --help           show this help message and exit
   --group_id group_id  Id of a group in gitlab
-  --token token        Gitlab Token
   --branch branch      Branch to clone in all repos [by default master]
+  --http               Clone via http instead of ssh
   --gitlab-url gitlab  Gitlab address [by default gitlab.com]
+  --token token        Gitlab Token
 
 
 Example
