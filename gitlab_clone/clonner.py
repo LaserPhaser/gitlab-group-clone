@@ -46,7 +46,10 @@ def clone(group_id, branch, token, gitlab_url, http):
             f"{gitlab_url}/api/v4/groups/{group_id}/projects?private_token={token}&include_subgroups=True&per_page=100&page={page}&with_shared=False", verify=False)
         for project in response.json():
             path = project['path_with_namespace']
-            url_to_repo = project[f'{"http" if http else "ssh"}_url_to_repo']
+            if http:
+                url_to_repo = project[f'http_url_to_repo'].replace("//",f"//token:{token}@")
+            else:
+                url_to_repo = project[f'ssh_url_to_repo']
             try:
                 if not os.path.exists(path):
                     c=f"git clone --branch {branch} {url_to_repo} {path}"
