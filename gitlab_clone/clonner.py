@@ -15,6 +15,8 @@ def main():
     parser.add_argument('--branch', metavar='branch', type=str,
                         help='Branch to clone in all repos [by default master]', default='master')
 
+    parser.add_argument('--http', help='Clone via http instead of ssh', action='store_true')
+
     parser.add_argument(
         '--gitlab-url',
         metavar='gitlab',
@@ -35,7 +37,7 @@ def main():
     clone(**request_param)
 
 
-def clone(group_id, branch, token, gitlab_url):
+def clone(group_id, branch, token, gitlab_url, http):
     total_pages = 1
     page = 0
     while page < total_pages:
@@ -44,10 +46,12 @@ def clone(group_id, branch, token, gitlab_url):
             f"{gitlab_url}/api/v4/groups/{group_id}/projects?private_token={token}&include_subgroups=True&per_page=100&page={page}&with_shared=False", verify=False)
         for project in response.json():
             path = project['path_with_namespace']
-            ssh_url_to_repo = project['ssh_url_to_repo']
+            url_to_repo = project[f'{"http" if http else "ssh"}_url_to_repo']
             try:
                 if not os.path.exists(path):
-                    command = shlex.split(f"git clone --branch {branch} {ssh_url_to_repo} {path}")
+                    c=f"git clone --branch {branch} {url_to_repo} {path}"
+                    logging.info(f"command: {c}")
+                    command = shlex.split(c)
                     result_code = subprocess.Popen(command)
                 else:
                     logging.info(f"{path} already exists")
