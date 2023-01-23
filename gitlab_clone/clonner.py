@@ -1,6 +1,5 @@
 import requests
 import multiprocessing
-import time
 import subprocess, shlex
 import argparse
 import os
