@@ -42,7 +42,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/ArseniyAntonov/gitlab-group-clone',
-    version='1.1.0',
+    version='1.2.0',
     entry_points={
         "console_scripts": [
             "gitlab-clone=gitlab_clone.clonner:main",
